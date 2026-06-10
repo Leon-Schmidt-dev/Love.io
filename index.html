@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>💕 die scheue Frage 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fbe9f0 0%, #ffdde8 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Quicksand', sans-serif;
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 56px;
+            box-shadow: 0 20px 45px rgba(255, 105, 155, 0.12), 0 5px 12px rgba(0, 0, 0, 0.03);
+            padding: 32px 28px 40px;
+            max-width: 560px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .greeting {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 16px 20px;
+            background: #fff5f9;
+            border-radius: 80px;
+            font-size: 1rem;
+            color: #b8476d;
+            font-weight: 500;
+            border: 1px solid #ffd9e6;
+        }
+
+        .slide {
+            display: none;
+            animation: slideIn 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.05);
+        }
+        .slide.active {
+            display: block;
+        }
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        h2 {
+            color: #b43b62;
+            font-size: 1.85rem;
+            font-weight: 590;
+            margin-bottom: 8px;
+        }
+        .subhead {
+            color: #e48bac;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+            border-left: 3px solid #ffb7cf;
+            padding-left: 12px;
+        }
+
+        .field {
+            background: #ffffff;
+            padding: 16px 20px;
+            border-radius: 44px;
+            margin-bottom: 24px;
+            border: 1px solid #ffe2ed;
+        }
+        label {
+            display: block;
+            font-size: 0.75rem;
+            color: #d47c9a;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        input, select {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 6px 0;
+            font-size: 1rem;
+            font-family: inherit;
+            color: #2c2c2e;
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 12px;
+        }
+        button {
+            font-family: inherit;
+            font-weight: 510;
+            font-size: 0.95rem;
+            padding: 12px 24px;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            background: #f2e4ea;
+            color: #af5980;
+        }
+        .btn-primary {
+            background: #ff90b0;
+            color: white;
+            box-shadow: 0 2px 8px rgba(255, 100, 140, 0.2);
+        }
+        .btn-primary:active {
+            transform: scale(0.96);
+        }
+        .btn-secondary {
+            background: #fef0f5;
+            color: #c9668b;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0 10px;
+            position: relative;
+        }
+        
+        /* Der NEIN-Button - fixed & bewegt sich nur bei Berührung */
+        #noBtn {
+            position: fixed;
+            background: #f5cdd9;
+            color: #ad5474;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: left 0.35s cubic-bezier(0.2, 1.1, 0.35, 1.05), top 0.35s cubic-bezier(0.2, 1.1, 0.35, 1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+            background: rgba(245, 205, 217, 0.95);
+            font-family: inherit;
+            letter-spacing: 0.5px;
+        }
+        
+        #noBtn:hover {
+            transform: scale(0.98);
+            background: rgba(240, 190, 210, 0.95);
+        }
+        
+        #yesBtnMain {
+            font-size: 1.35rem;
+            padding: 14px 38px;
+            background: #ff88ab;
+            box-shadow: 0 4px 12px rgba(255, 110, 150, 0.25);
+            position: relative;
+            z-index: 5;
+        }
+
+        .summary {
+            background: #fff7fa;
+            border-radius: 44px;
+            padding: 26px;
+            margin: 24px 0;
+            border: 1px solid #ffe2ed;
+            line-height: 1.65;
+            color: #9a4e6e;
+        }
+        .copy-btn {
+            background: #ffdbe6;
+            color: #bd6888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="greeting">
+        💕 eine kleine frage mit großen gefühlen 💕
+    </div>
+
+    <div id="slide1" class="slide active">
+        <h2>✨ magst du?</h2>
+        <div class="subhead">hast du lust, mit mir auszugehen?</div>
+        <div class="button-container" id="buttonContainer">
+            <button class="btn-primary" id="yesBtnMain">💗 ja, gerne</button>
+        </div>
+    </div>
+
+    <div id="slide2" class="slide">
+        <h2>📅 wann?</h2>
+        <div class="subhead">sag mir, wann es dir passt</div>
+        <div class="field">
+            <label>dein wunschdatum</label>
+            <input type="date" id="datePicker" value="2026-06-27">
+        </div>
+        <div class="btn-group">
+            <button id="backSlide2" class="btn-secondary">← zurück</button>
+            <button id="nextSlide2" class="btn-primary">weiter →</button>
+        </div>
+    </div>
+
+    <div id="slide3" class="slide">
+        <h2>⏰ wie spät?</h2>
+        <div class="subhead">ganz nach deinem rhythm</div>
+        <div class="field">
+            <label>uhrzeit</label>
+            <select id="timeSelect">
+                <option value="17:00">17:00 uhr</option>
+                <option value="18:00">18:00 uhr</option>
+                <option value="18:30">18:30 uhr</option>
+                <option value="19:00" selected>19:00 uhr</option>
+                <option value="19:30">19:30 uhr</option>
+                <option value="20:00">20:00 uhr</option>
+            </select>
+        </div>
+        <div class="btn-group">
+            <button id="backSlide3" class="btn-secondary">← zurück</button>
+            <button id="nextSlide3" class="btn-primary">weiter →</button>
+        </div>
+    </div>
+
+    <div id="slide4" class="slide">
+        <h2>🍰 und was?</h2>
+        <div class="subhead">worauf hast du lust?</div>
+        <div class="field">
+            <label>aktivität / essen</label>
+            <select id="activitySelect">
+                <option value="Sushi 🍣">Sushi 🍣</option>
+                <option value="Burger 🍔">Burger 🍔</option>
+                <option value="Pizza 🍕">Pizza 🍕</option>
+                <option value="Café & Kuchen ☕🍰">Café & Kuchen ☕🍰</option>
+                <option value="Kino + Popcorn 🎬🍿">Kino + Popcorn 🎬🍿</option>
+                <option value="Spaziergang + Eis 🌸🍦">Spaziergang + Eis 🌸🍦</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>dein extra-wunsch (optional)</label>
+            <input type="text" id="extraInput" placeholder="z. B. blumen, picknick, überraschung...">
+        </div>
+        <div class="btn-group">
+            <button id="backSlide4" class="btn-secondary">← zurück</button>
+            <button id="nextSlide4" class="btn-primary">weiter →</button>
+        </div>
+    </div>
+
+    <div id="slide5" class="slide">
+        <h2>🎀 fertig</h2>
+        <div class="subhead">unser plan</div>
+        <div class="summary" id="summaryBlock"></div>
+        <div class="btn-group">
+            <button id="backSlide5" class="btn-secondary">← bearbeiten</button>
+            <button id="copyBtn" class="copy-btn">📋 kopieren</button>
+        </div>
+    </div>
+</div>
+
+<!-- Der scheue Nein-Button (startet neben "Ja, gerne") -->
+<button id="noBtn">🤍 nein</button>
+
+<script>
+    // Elemente
+    const slides = document.querySelectorAll('.slide');
+    const yesMain = document.getElementById('yesBtnMain');
+    const noBtn = document.getElementById('noBtn');
+    const buttonContainer = document.getElementById('buttonContainer');
+    
+    const datePicker = document.getElementById('datePicker');
+    const timeSelect = document.getElementById('timeSelect');
+    const activitySelect = document.getElementById('activitySelect');
+    const extraInput = document.getElementById('extraInput');
+    const summaryBlock = document.getElementById('summaryBlock');
+    const copyBtn = document.getElementById('copyBtn');
+
+    const nextSlide2 = document.getElementById('nextSlide2');
+    const backSlide2 = document.getElementById('backSlide2');
+    const nextSlide3 = document.getElementById('nextSlide3');
+    const backSlide3 = document.getElementById('backSlide3');
+    const nextSlide4 = document.getElementById('nextSlide4');
+    const backSlide4 = document.getElementById('backSlide4');
+    const backSlide5 = document.getElementById('backSlide5');
+
+    let currentSlide = 0;
+    let isOnCooldown = false;
+    
+    // Bildschirmgrenzen berechnen
+    function getRandomPosition() {
+        const btnWidth = noBtn.offsetWidth;
+        const btnHeight = noBtn.offsetHeight;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        const minX = 15;
+        const maxX = viewportWidth - btnWidth - 15;
+        const minY = 80;
+        const maxY = viewportHeight - btnHeight - 80;
+        
+        const randomX = Math.random() * (maxX - minX) + minX;
+        const randomY = Math.random() * (maxY - minY) + minY;
+        
+        return { x: randomX, y: randomY };
+    }
+    
+    // Button zu zufälliger Position bewegen
+    function moveToRandomPosition() {
+        if (!noBtn) return;
+        const { x, y } = getRandomPosition();
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+    }
+    
+    // Button neben "Ja, gerne" positionieren (Startpunkt)
+    function positionNextToYesButton() {
+        const yesRect = yesMain.getBoundingClientRect();
+        const btnWidth = noBtn.offsetWidth;
+        
+        // Direkt rechts neben dem "Ja, gerne" Button
+        let leftPos = yesRect.right + 15;
+        let topPos = yesRect.top;
+        
+        // Begrenzung damit er nicht aus dem Bildschirm fällt
+        const viewportWidth = window.innerWidth;
+        if (leftPos + btnWidth > viewportWidth - 15) {
+            leftPos = yesRect.left - btnWidth - 15;
+        }
+        
+        noBtn.style.left = leftPos + 'px';
+        noBtn.style.top = topPos + 'px';
+    }
+    
+    // Cool-Down (0.3 Sekunden, unsichtbar)
+    function startCooldown() {
+        if (isOnCooldown) return;
+        
+        isOnCooldown = true;
+        
+        setTimeout(() => {
+            isOnCooldown = false;
+        }, 300);
+    }
+    
+    // Bei Berührung des Nein-Buttons
+    function onTouchNoButton(e) {
+        e.preventDefault();
+        
+        if (isOnCooldown) {
+            if (navigator.vibrate) navigator.vibrate(10);
+            return;
+        }
+        
+        // Button zu NEUER zufälliger Position bewegen
+        moveToRandomPosition();
+        
+        // Cool-Down starten (unsichtbar)
+        startCooldown();
+        
+        if (navigator.vibrate) navigator.vibrate(30);
+    }
+    
+    // JA – weiter zu Datum
+    yesMain.addEventListener('click', () => {
+        currentSlide = 1;
+        showSlide(1);
+        noBtn.style.display = 'none';
+    });
+    
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+        currentSlide = index;
+    }
+    
+    // Navigation
+    nextSlide2.addEventListener('click', () => {
+        if (datePicker.value) {
+            currentSlide = 2;
+            showSlide(2);
+        } else alert("💕 wähl einfach ein datum aus");
+    });
+    backSlide2.addEventListener('click', () => {
+        currentSlide = 0;
+        showSlide(0);
+        noBtn.style.display = 'inline-block';
+        isOnCooldown = false;
+        // Neben "Ja, gerne" positionieren
+        setTimeout(() => {
+            positionNextToYesButton();
+        }, 100);
+    });
+    
+    nextSlide3.addEventListener('click', () => {
+        currentSlide = 3;
+        showSlide(3);
+    });
+    backSlide3.addEventListener('click', () => {
+        currentSlide = 1;
+        showSlide(1);
+    });
+    
+    function updateSummary() {
+        const date = datePicker.value;
+        const time = timeSelect.value;
+        const activity = activitySelect.value;
+        const extra = extraInput.value.trim() || "✨ du wirst überrascht ✨";
+        summaryBlock.innerHTML = `
+            📅 ${date}<br>
+            ⏰ ${time} uhr<br>
+            🍰 ${activity}<br>
+            💌 ${extra}<br><br>
+            <strong>💕 ich freu mich auf dich</strong>
+        `;
+    }
+    
+    nextSlide4.addEventListener('click', () => {
+        updateSummary();
+        currentSlide = 4;
+        showSlide(4);
+    });
+    backSlide4.addEventListener('click', () => {
+        currentSlide = 2;
+        showSlide(2);
+    });
+    backSlide5.addEventListener('click', () => {
+        currentSlide = 3;
+        showSlide(3);
+    });
+    
+    copyBtn.addEventListener('click', () => {
+        const date = datePicker.value;
+        const time = timeSelect.value;
+        const activity = activitySelect.value;
+        const extra = extraInput.value.trim() || "Überraschung";
+        const text = `💕 unser date 💕\n📅 ${date}\n⏰ ${time} uhr\n🍰 ${activity}\n💌 ${extra}\n\n✨ ich freu mich so ✨`;
+        navigator.clipboard.writeText(text).then(() => {
+            copyBtn.textContent = '✔️ kopiert';
+            setTimeout(() => { copyBtn.textContent = '📋 kopieren'; }, 1800);
+        });
+    });
+    
+    // Event-Listener für Nein-Button
+    noBtn.addEventListener('mouseenter', onTouchNoButton);
+    noBtn.addEventListener('touchstart', onTouchNoButton);
+    noBtn.addEventListener('click', onTouchNoButton);
+    
+    // Initialen Button neben "Ja, gerne" positionieren
+    setTimeout(() => {
+        positionNextToYesButton();
+    }, 200);
+    
+    // Bei Fenster-Größenänderung
+    window.addEventListener('resize', () => {
+        if (!isOnCooldown && noBtn && noBtn.style.display !== 'none' && currentSlide === 0) {
+            positionNextToYesButton();
+        }
+    });
+</script>
+</body>
+</html>
