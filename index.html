@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>💕 die scheue Frage 💕</title>
+    <title>💕 a shy little question 💕</title>
     <style>
         * {
             margin: 0;
@@ -139,7 +139,7 @@
             position: relative;
         }
         
-        /* Der NEIN-Button - fixed & bewegt sich nur bei Berührung */
+        /* The NO button - moves only when touched */
         #noBtn {
             position: fixed;
             background: #f5cdd9;
@@ -193,90 +193,93 @@
 
 <div class="card">
     <div class="greeting">
-        💕 eine kleine frage mit großen gefühlen 💕
+        💕 a little question with big feelings 💕
     </div>
 
     <div id="slide1" class="slide active">
-        <h2>✨ magst du?</h2>
-        <div class="subhead">hast du lust, mit mir auszugehen?</div>
+        <h2>✨ do you like me?</h2>
+        <div class="subhead">would you like to go on a date with me?</div>
         <div class="button-container" id="buttonContainer">
-            <button class="btn-primary" id="yesBtnMain">💗 ja, gerne</button>
+            <button class="btn-primary" id="yesBtnMain">💗 yes, i'd love to</button>
         </div>
     </div>
 
     <div id="slide2" class="slide">
-        <h2>📅 wann?</h2>
-        <div class="subhead">sag mir, wann es dir passt</div>
+        <h2>📅 when?</h2>
+        <div class="subhead">tell me when it works for you</div>
         <div class="field">
-            <label>dein wunschdatum</label>
+            <label>your preferred date</label>
             <input type="date" id="datePicker" value="2026-06-27">
         </div>
         <div class="btn-group">
-            <button id="backSlide2" class="btn-secondary">← zurück</button>
-            <button id="nextSlide2" class="btn-primary">weiter →</button>
+            <button id="backSlide2" class="btn-secondary">← back</button>
+            <button id="nextSlide2" class="btn-primary">next →</button>
         </div>
     </div>
 
     <div id="slide3" class="slide">
-        <h2>⏰ wie spät?</h2>
-        <div class="subhead">ganz nach deinem rhythm</div>
+        <h2>⏰ what time?</h2>
+        <div class="subhead">when would you like to meet?</div>
         <div class="field">
-            <label>uhrzeit</label>
+            <label>time</label>
             <select id="timeSelect">
-                <option value="17:00">17:00 uhr</option>
-                <option value="18:00">18:00 uhr</option>
-                <option value="18:30">18:30 uhr</option>
-                <option value="19:00" selected>19:00 uhr</option>
-                <option value="19:30">19:30 uhr</option>
-                <option value="20:00">20:00 uhr</option>
+                <option value="12:00">12:00 PM (noon)</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00" selected>8:00 PM</option>
             </select>
         </div>
         <div class="btn-group">
-            <button id="backSlide3" class="btn-secondary">← zurück</button>
-            <button id="nextSlide3" class="btn-primary">weiter →</button>
+            <button id="backSlide3" class="btn-secondary">← back</button>
+            <button id="nextSlide3" class="btn-primary">next →</button>
         </div>
     </div>
 
     <div id="slide4" class="slide">
-        <h2>🍰 und was?</h2>
-        <div class="subhead">worauf hast du lust?</div>
+        <h2>🍰 what shall we do?</h2>
+        <div class="subhead">what do you feel like doing?</div>
         <div class="field">
-            <label>aktivität / essen</label>
+            <label>activity / food</label>
             <select id="activitySelect">
                 <option value="Sushi 🍣">Sushi 🍣</option>
                 <option value="Burger 🍔">Burger 🍔</option>
                 <option value="Pizza 🍕">Pizza 🍕</option>
-                <option value="Café & Kuchen ☕🍰">Café & Kuchen ☕🍰</option>
-                <option value="Kino + Popcorn 🎬🍿">Kino + Popcorn 🎬🍿</option>
-                <option value="Spaziergang + Eis 🌸🍦">Spaziergang + Eis 🌸🍦</option>
+                <option value="Coffee & Cake ☕🍰">Coffee & Cake ☕🍰</option>
+                <option value="Movie + Popcorn 🎬🍿">Movie + Popcorn</option>
+                <option value="Walk + Ice Cream 🌸🍦">Walk + Ice Cream</option>
             </select>
         </div>
         <div class="field">
-            <label>dein extra-wunsch (optional)</label>
-            <input type="text" id="extraInput" placeholder="z. B. blumen, picknick, überraschung...">
+            <label>your extra wish (optional)</label>
+            <input type="text" id="extraInput" placeholder="e.g. flowers, picnic, surprise...">
         </div>
         <div class="btn-group">
-            <button id="backSlide4" class="btn-secondary">← zurück</button>
-            <button id="nextSlide4" class="btn-primary">weiter →</button>
+            <button id="backSlide4" class="btn-secondary">← back</button>
+            <button id="nextSlide4" class="btn-primary">next →</button>
         </div>
     </div>
 
     <div id="slide5" class="slide">
-        <h2>🎀 fertig</h2>
-        <div class="subhead">unser plan</div>
+        <h2>🎀 all set</h2>
+        <div class="subhead">our plan</div>
         <div class="summary" id="summaryBlock"></div>
         <div class="btn-group">
-            <button id="backSlide5" class="btn-secondary">← bearbeiten</button>
-            <button id="copyBtn" class="copy-btn">📋 kopieren</button>
+            <button id="backSlide5" class="btn-secondary">← edit</button>
+            <button id="copyBtn" class="copy-btn">📋 copy</button>
         </div>
     </div>
 </div>
 
-<!-- Der scheue Nein-Button (startet neben "Ja, gerne") -->
-<button id="noBtn">🤍 nein</button>
+<!-- The shy NO button (starts right next to "yes") -->
+<button id="noBtn">🤍 no</button>
 
 <script>
-    // Elemente
+    // Elements
     const slides = document.querySelectorAll('.slide');
     const yesMain = document.getElementById('yesBtnMain');
     const noBtn = document.getElementById('noBtn');
@@ -300,7 +303,7 @@
     let currentSlide = 0;
     let isOnCooldown = false;
     
-    // Bildschirmgrenzen berechnen
+    // Get random screen position
     function getRandomPosition() {
         const btnWidth = noBtn.offsetWidth;
         const btnHeight = noBtn.offsetHeight;
@@ -318,7 +321,7 @@
         return { x: randomX, y: randomY };
     }
     
-    // Button zu zufälliger Position bewegen
+    // Move button to random position
     function moveToRandomPosition() {
         if (!noBtn) return;
         const { x, y } = getRandomPosition();
@@ -326,16 +329,16 @@
         noBtn.style.top = y + 'px';
     }
     
-    // Button neben "Ja, gerne" positionieren (Startpunkt)
+    // Position button right next to "Yes" button (starting position)
     function positionNextToYesButton() {
         const yesRect = yesMain.getBoundingClientRect();
         const btnWidth = noBtn.offsetWidth;
         
-        // Direkt rechts neben dem "Ja, gerne" Button
+        // Directly to the right of the "Yes" button
         let leftPos = yesRect.right + 15;
         let topPos = yesRect.top;
         
-        // Begrenzung damit er nicht aus dem Bildschirm fällt
+        // Prevent going off screen
         const viewportWidth = window.innerWidth;
         if (leftPos + btnWidth > viewportWidth - 15) {
             leftPos = yesRect.left - btnWidth - 15;
@@ -345,7 +348,7 @@
         noBtn.style.top = topPos + 'px';
     }
     
-    // Cool-Down (0.3 Sekunden, unsichtbar)
+    // Cooldown (0.3 seconds, invisible)
     function startCooldown() {
         if (isOnCooldown) return;
         
@@ -356,7 +359,7 @@
         }, 300);
     }
     
-    // Bei Berührung des Nein-Buttons
+    // When NO button is touched
     function onTouchNoButton(e) {
         e.preventDefault();
         
@@ -365,16 +368,16 @@
             return;
         }
         
-        // Button zu NEUER zufälliger Position bewegen
+        // Jump to a new random position
         moveToRandomPosition();
         
-        // Cool-Down starten (unsichtbar)
+        // Start invisible cooldown
         startCooldown();
         
         if (navigator.vibrate) navigator.vibrate(30);
     }
     
-    // JA – weiter zu Datum
+    // YES – go to date picker
     yesMain.addEventListener('click', () => {
         currentSlide = 1;
         showSlide(1);
@@ -393,14 +396,13 @@
         if (datePicker.value) {
             currentSlide = 2;
             showSlide(2);
-        } else alert("💕 wähl einfach ein datum aus");
+        } else alert("💕 please pick a date");
     });
     backSlide2.addEventListener('click', () => {
         currentSlide = 0;
         showSlide(0);
         noBtn.style.display = 'inline-block';
         isOnCooldown = false;
-        // Neben "Ja, gerne" positionieren
         setTimeout(() => {
             positionNextToYesButton();
         }, 100);
@@ -417,15 +419,15 @@
     
     function updateSummary() {
         const date = datePicker.value;
-        const time = timeSelect.value;
+        const time = timeSelect.options[timeSelect.selectedIndex]?.text || timeSelect.value;
         const activity = activitySelect.value;
-        const extra = extraInput.value.trim() || "✨ du wirst überrascht ✨";
+        const extra = extraInput.value.trim() || "✨ you can be surprised ✨";
         summaryBlock.innerHTML = `
             📅 ${date}<br>
-            ⏰ ${time} uhr<br>
+            ⏰ ${time}<br>
             🍰 ${activity}<br>
             💌 ${extra}<br><br>
-            <strong>💕 ich freu mich auf dich</strong>
+            <strong>💕 i'm really looking forward to seeing you</strong>
         `;
     }
     
@@ -445,27 +447,27 @@
     
     copyBtn.addEventListener('click', () => {
         const date = datePicker.value;
-        const time = timeSelect.value;
+        const time = timeSelect.options[timeSelect.selectedIndex]?.text || timeSelect.value;
         const activity = activitySelect.value;
-        const extra = extraInput.value.trim() || "Überraschung";
-        const text = `💕 unser date 💕\n📅 ${date}\n⏰ ${time} uhr\n🍰 ${activity}\n💌 ${extra}\n\n✨ ich freu mich so ✨`;
+        const extra = extraInput.value.trim() || "surprise";
+        const text = `💕 our date 💕\n📅 ${date}\n⏰ ${time}\n🍰 ${activity}\n💌 ${extra}\n\n✨ i can't wait ✨`;
         navigator.clipboard.writeText(text).then(() => {
-            copyBtn.textContent = '✔️ kopiert';
-            setTimeout(() => { copyBtn.textContent = '📋 kopieren'; }, 1800);
+            copyBtn.textContent = '✔️ copied';
+            setTimeout(() => { copyBtn.textContent = '📋 copy'; }, 1800);
         });
     });
     
-    // Event-Listener für Nein-Button
+    // Event listeners for NO button
     noBtn.addEventListener('mouseenter', onTouchNoButton);
     noBtn.addEventListener('touchstart', onTouchNoButton);
     noBtn.addEventListener('click', onTouchNoButton);
     
-    // Initialen Button neben "Ja, gerne" positionieren
+    // Initial position next to "Yes" button
     setTimeout(() => {
         positionNextToYesButton();
     }, 200);
     
-    // Bei Fenster-Größenänderung
+    // Handle window resize
     window.addEventListener('resize', () => {
         if (!isOnCooldown && noBtn && noBtn.style.display !== 'none' && currentSlide === 0) {
             positionNextToYesButton();
